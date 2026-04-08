@@ -24,9 +24,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <img
-              src="https://www.propertylay.com/assets/images/logo.jpg"
+              src="/assets/images/logo-white.png"
               alt="Propertylay"
-              className="h-10 w-auto object-contain mb-5 invert mix-blend-screen opacity-90"
+              className="h-10 w-auto object-contain mb-5"
             />
             <p className="text-sm text-white/50 leading-relaxed">
               Curating luxury farmhouses, villas, and premium plots across Delhi NCR. Your trusted partner in premium real estate.

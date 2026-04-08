@@ -44,11 +44,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <img
-              src="https://www.propertylay.com/assets/images/logo.jpg"
+              src={!scrolled ? "/assets/images/logo-white.png" : "/assets/images/logo-dark.png"}
               alt="Propertylay"
-              className={`h-8 sm:h-10 w-auto object-contain transition-all duration-300 ${
-                !scrolled ? 'invert mix-blend-screen opacity-90' : 'mix-blend-multiply'
-              }`}
+              className="h-8 sm:h-10 w-auto object-contain transition-all duration-300"
             />
           </Link>
 
