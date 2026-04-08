@@ -42,11 +42,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 shrink-0">
             <img
               src="https://www.propertylay.com/assets/images/logo.jpg"
               alt="Propertylay"
-              className="h-10 w-auto object-contain"
+              className={`h-8 sm:h-10 w-auto object-contain transition-all duration-300 ${
+                !scrolled ? 'invert mix-blend-screen opacity-90' : 'mix-blend-multiply'
+              }`}
             />
           </Link>
 
@@ -94,27 +96,29 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* CTA */}
-          <a
-            href="tel:+919953768643"
-            className="hidden lg:flex items-center gap-2 btn-gold text-xs py-3 px-5"
-          >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            +91 99537 68643
-          </a>
+          {/* CTA & Hamburger */}
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:+919953768643"
+              className="flex items-center gap-1.5 btn-gold py-2 px-3 lg:py-3 lg:px-5"
+            >
+              <svg className="w-4 h-4 lg:w-3.5 lg:h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span className="hidden sm:inline text-xs tracking-wider">+91 99537 68643</span>
+            </a>
 
-          {/* Mobile hamburger */}
-          <button
-            className={`lg:hidden p-2 ${scrolled ? 'text-charcoal' : 'text-white'}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className={`w-6 h-0.5 mb-1.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <div className={`w-6 h-0.5 mb-1.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? 'opacity-0' : ''}`} />
-            <div className={`w-6 h-0.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </button>
+            {/* Mobile hamburger */}
+            <button
+              className={`lg:hidden p-2 ${scrolled ? 'text-charcoal' : 'text-white'}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className={`w-6 h-0.5 mb-1.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <div className={`w-6 h-0.5 mb-1.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? 'opacity-0' : ''}`} />
+              <div className={`w-6 h-0.5 transition-all ${scrolled ? 'bg-charcoal' : 'bg-white'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            </button>
+          </div>
         </div>
       </div>
 
