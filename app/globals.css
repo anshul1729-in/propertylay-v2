@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts ───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ─── CSS Variables ──────────────────────────────────────────── */
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-dm-sans:   'DM Sans', system-ui, sans-serif;
+
+  --gold:           #B8973A;
+  --gold-light:     #D4AE56;
+  --gold-pale:      #F0E6C8;
+  --ivory:          #FAF8F3;
+  --cream:          #F0EBE0;
+  --charcoal:       #1A1A18;
+  --muted:          #6B6B5E;
+  --dark:           #0F0F0D;
+  --sage:           #7A8C6E;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-dm-sans);
+  background-color: var(--ivory);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* ─── Typography helpers ─────────────────────────────────────── */
+.font-display { font-family: var(--font-cormorant); }
+
+/* ─── Gold divider line ──────────────────────────────────────── */
+.gold-line {
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 1.5rem;
+}
+.gold-line-left {
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 0 1.5rem;
+}
+
+/* ─── Section fade-up reveal (via IntersectionObserver) ──────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Stagger children ───────────────────────────────────────── */
+.reveal-children > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-children.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.05s; }
+.reveal-children.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.15s; }
+.reveal-children.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:.25s; }
+.reveal-children.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:.35s; }
+
+/* ─── Navbar scroll shadow ───────────────────────────────────── */
+.nav-scrolled {
+  background: rgba(250, 248, 243, 0.97) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(184,151,58,0.15);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--font-dm-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-dm-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border: 1px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.8);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--charcoal);
+  font-family: var(--font-dm-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border: 1px solid var(--charcoal);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-outline-dark:hover { background: var(--charcoal); color: #fff; }
+
+/* ─── Property Card ──────────────────────────────────────────── */
+.property-card { position: relative; overflow: hidden; cursor: pointer; }
+.property-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.property-card:hover img { transform: scale(1.05); }
+.property-card .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,15,13,0.85) 0%, rgba(15,15,13,0.1) 60%, transparent 100%);
+  transition: background 0.4s ease;
+}
+
+/* ─── Hero Ken Burns ─────────────────────────────────────────── */
+.hero-bg {
+  animation: kenBurns 14s ease-in-out infinite alternate;
+}
+@keyframes kenBurns {
+  0%   { transform: scale(1.04); }
+  100% { transform: scale(1.12); }
+}
+
+/* ─── Form inputs ────────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E0D9CC;
+  padding: 14px 16px;
+  font-family: var(--font-dm-sans);
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.input-field:focus { border-color: var(--gold); }
+.input-field::placeholder { color: #AAA498; }
+
+/* ─── Stat counter ───────────────────────────────────────────── */
+.stat-number {
+  font-family: var(--font-cormorant);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--gold);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection { background: var(--gold-pale); color: var(--charcoal); }
